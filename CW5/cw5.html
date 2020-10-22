@@ -1,168 +1,259 @@
 <!DOCTYPE html>
 <!-- saved from url=(0051)https://blm-fsmvu.github.io/305/work/Inspector.html -->
-<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
-    <title>Inspector </title>
+<html lang="en-US">
 
-    <style>
-        body { max-width: 600px; }
-    </style>
-<script data-dapp-detection="">
-(function() {
-  let alreadyInsertedMetaTag = false
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  function __insertDappDetected() {
-    if (!alreadyInsertedMetaTag) {
-      const meta = document.createElement('meta')
-      meta.name = 'dapp-detected'
-      document.head.appendChild(meta)
-      alreadyInsertedMetaTag = true
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+  <title>Inspector </title>
+
+  <style>
+    body {
+      max-width: 600px;
     }
-  }
+  </style>
+  <script data-dapp-detection="">
+    (function () {
+      let alreadyInsertedMetaTag = false
 
-  if (window.hasOwnProperty('web3')) {
-    // Note a closure can't be used for this var because some sites like
-    // www.wnyc.org do a second script execution via eval for some reason.
-    window.__disableDappDetectionInsertion = true
-    // Likely oldWeb3 is undefined and it has a property only because
-    // we defined it. Some sites like wnyc.org are evaling all scripts
-    // that exist again, so this is protection against multiple calls.
-    if (window.web3 === undefined) {
-      return
-    }
-    __insertDappDetected()
-  } else {
-    var oldWeb3 = window.web3
-    Object.defineProperty(window, 'web3', {
-      configurable: true,
-      set: function (val) {
-        if (!window.__disableDappDetectionInsertion)
-          __insertDappDetected()
-        oldWeb3 = val
-      },
-      get: function () {
-        if (!window.__disableDappDetectionInsertion)
-          __insertDappDetected()
-        return oldWeb3
-      }
-    })
-  }
-})()</script></head>
-
-<body>
-<p><b id="docName">Inspector V2.15</b> &nbsp;
-<a href="https://maeyler.github.io/JS/sss/">Read me</a> &nbsp;
-<a href="https://maeyler.github.io/JS/sss/Turkish">Turkish</a> &nbsp;
-<a href="https://blm-fsmvu.github.io/305/work/Objects">Objects</a>
-</p>
-<div id="sss"><table class="inspector">
-  <tbody><tr>
-    <th><button onclick="previous();hideTip(this)">◀
-    <span class="tip1">Display previous object</span></button>
-    &nbsp; Objects &nbsp;
-    <button onclick="removeIt(event.ctrlKey);hideTip(this)">✘
-    <span class="tip1">Delete current object<br>
-        (&lt;CTRL&gt; deletes all)</span></button>
-    </th>
-    <th><button id="menu" onclick="display(MENU);hideTip(this)">M
-    <span class="tip1">Display Menu</span></button>
-    &nbsp; Properties
-    </th>
-  </tr>
-  <tr>
-    <td rowspan="3"><ul id="list1" onclick="doClick(event, this)" tabindex="0" onkeydown="doKey(event)"><li style="color: white; background: blue;"><b>Menu</b> Menu</li><li><b>Menu</b> Chap4</li><li><b>Menu</b> Chap6</li><li><b>Menu</b> Quiz</li><li><b>Menu</b> Async</li></ul></td>
-    <td><ul id="list2" onclick="doClick(event, this)"><li class="cfirst">Menu<span class="tip2">Menu<br>Object</span></li><li>a: [0,11,22,abc]</li><li>c: <b>Object</b></li><li>d: Thu Oct 22 2020 10:02:49 ...</li><li>s: "Small is beautiful"</li><li>window: <b>Window</b></li><li class="cname">Object</li></ul></td>
-  </tr>
-  <tr>
-    <th>Methods
-    <input id="sorted" type="checkbox" checked="true" onclick="display(_)">
-    <span id="small">sort</span>
-    </th>
-  </tr>
-  <tr>
-    <td><ul id="list3" onclick="doClick(event, this)"><li class="cfirst">Menu<span class="tip2">Menu<br>Object</span></li><li>allKeysIn</li><li>allValuesOf</li><li>deepEqual</li><li>toString</li><li class="cname">Object</li></ul></td>
-  </tr>
-  <tr>
-    <td colspan="2"><input id="inp" onkeyup="doEnter(event)">
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" id="out">[object Menu] Menu — 5 properties and 4 methods</td>
-  </tr>
-</tbody></table></div>
-<h3>Work or Weekend</h3>
-<textarea id="data" name=" " rows="8" cols="50"></textarea>
-<button onclick="firstQuestion()">Question 1</button>
-
-<p id="allEntry"></p>
-<p><input type="file" multiple="" onchange="fileSelect(this)"></p>  
-<pre id="disp1"></pre> <img id="disp2">
-
-<link href="./Inspector_files/inspector.css" rel="stylesheet">
-<script src="./Inspector_files/inspector.js"></script>
-<script src="./Inspector_files/chap4.js"></script>
-<script src="./Inspector_files/chap6.js"></script>
-<script src="./Inspector_files/Quiz.js"></script>
-<script src="./Inspector_files/Async.js"></script>
-<script>
-"use strict";
-class Chap4 extends Menu {
-  constructor() {
-    super();
-    this.JOURNAL = JOURNAL;
-    this.EVENTS = EVENTS;
-  }
-  correlation(evt) { 
-    return phi(window.tableFor(evt)) 
-  }
-  analyze(val) {
-    return window.analyze(val)
-  }
-  tableFor(evt) {
-    return window.tableFor(evt)
-  }
-}
-
-var a, b, c, d, s;  //global variables
-function init() {
-    let len = 123, name = "Circle", pi = Math.PI
-    a = [0, 11, "22", "abc"]
-    c = {len, name, pi}
-    d = new Date()
-    s = "Small is beautiful"
-    MENU = {a,c,d,s,window} //global
-    //make MENU a Menu instance
-    Object.setPrototypeOf(MENU, Menu.prototype)
-    display(MENU); 
-    display(new Chap4());
-    display(new Chap6());
-    display(new Quiz());
-    display(new Async());
-    display(MENU); 
-}
-    docName.innerText = "Inspector "+VERSION;
-    try {
-        inspect(sss, init); //makes the table
-        inp.value = "new Date()";
-    } catch(e) {
-        reportError(e);
-
-
-    }
-
-    function firstQuestion()
-{
-    for (let x of JOURNAL){
-      for (let y of x.events){
-        if (y.includes("work") || y.includes("weekend")){
-         document.getElementById('data').value +=x.events+'\n';
+      function __insertDappDetected() {
+        if (!alreadyInsertedMetaTag) {
+          const meta = document.createElement('meta')
+          meta.name = 'dapp-detected'
+          document.head.appendChild(meta)
+          alreadyInsertedMetaTag = true
         }
       }
+
+      if (window.hasOwnProperty('web3')) {
+        // Note a closure can't be used for this var because some sites like
+        // www.wnyc.org do a second script execution via eval for some reason.
+        window.__disableDappDetectionInsertion = true
+        // Likely oldWeb3 is undefined and it has a property only because
+        // we defined it. Some sites like wnyc.org are evaling all scripts
+        // that exist again, so this is protection against multiple calls.
+        if (window.web3 === undefined) {
+          return
+        }
+        __insertDappDetected()
+      } else {
+        var oldWeb3 = window.web3
+        Object.defineProperty(window, 'web3', {
+          configurable: true,
+          set: function (val) {
+            if (!window.__disableDappDetectionInsertion)
+              __insertDappDetected()
+            oldWeb3 = val
+          },
+          get: function () {
+            if (!window.__disableDappDetectionInsertion)
+              __insertDappDetected()
+            return oldWeb3
+          }
+        })
+      }
+    })()</script>
+</head>
+
+<body>
+  <p><b id="docName">Inspector V2.15</b> &nbsp;
+    <a href="https://maeyler.github.io/JS/sss/">Read me</a> &nbsp;
+    <a href="https://maeyler.github.io/JS/sss/Turkish">Turkish</a> &nbsp;
+    <a href="https://blm-fsmvu.github.io/305/work/Objects">Objects</a>
+  </p>
+  <div id="sss">
+    <table class="inspector">
+      <tbody>
+        <tr>
+          <th><button onclick="previous();hideTip(this)">◀
+              <span class="tip1">Display previous object</span></button>
+            &nbsp; Objects &nbsp;
+            <button onclick="removeIt(event.ctrlKey);hideTip(this)">✘
+              <span class="tip1">Delete current object<br>
+                (&lt;CTRL&gt; deletes all)</span></button>
+          </th>
+          <th><button id="menu" onclick="display(MENU);hideTip(this)">M
+              <span class="tip1">Display Menu</span></button>
+            &nbsp; Properties
+          </th>
+        </tr>
+        <tr>
+          <td rowspan="3">
+            <ul id="list1" onclick="doClick(event, this)" tabindex="0" onkeydown="doKey(event)">
+              <li style="color: white; background: blue;"><b>Menu</b> Menu</li>
+              <li><b>Menu</b> Chap4</li>
+              <li><b>Menu</b> Chap6</li>
+              <li><b>Menu</b> Quiz</li>
+              <li><b>Menu</b> Async</li>
+            </ul>
+          </td>
+          <td>
+            <ul id="list2" onclick="doClick(event, this)">
+              <li class="cfirst">Menu<span class="tip2">Menu<br>Object</span></li>
+              <li>a: [0,11,22,abc]</li>
+              <li>c: <b>Object</b></li>
+              <li>d: Thu Oct 22 2020 10:02:49 ...</li>
+              <li>s: "Small is beautiful"</li>
+              <li>window: <b>Window</b></li>
+              <li class="cname">Object</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>Methods
+            <input id="sorted" type="checkbox" checked="true" onclick="display(_)">
+            <span id="small">sort</span>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <ul id="list3" onclick="doClick(event, this)">
+              <li class="cfirst">Menu<span class="tip2">Menu<br>Object</span></li>
+              <li>allKeysIn</li>
+              <li>allValuesOf</li>
+              <li>deepEqual</li>
+              <li>toString</li>
+              <li class="cname">Object</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><input id="inp" onkeyup="doEnter(event)">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" id="out">[object Menu] Menu — 5 properties and 4 methods</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Work or Weekend</h3>
+  <textarea id="data" name=" " rows="8" cols="50"></textarea>
+  <button onclick="firstQuestion()">Question 1</button>
+
+
+  <input type="text" onchange=function2(value)>
+<textarea name="" id="tArea" cols="30" rows="10"></textarea>
+
+  
+
+  <p id="allEntry"></p>
+  <p><input type="file" multiple="" onchange="fileSelect(this)"></p>
+  <pre id="disp1"></pre> <img id="disp2">
+
+  <link href="./Inspector_files/inspector.css" rel="stylesheet">
+  <script src="./Inspector_files/inspector.js"></script>
+  <script src="./Inspector_files/chap4.js"></script>
+  <script src="./Inspector_files/chap6.js"></script>
+  <script src="./Inspector_files/Quiz.js"></script>
+  <script src="./Inspector_files/Async.js"></script>
+  <script>
+    "use strict";
+    class Chap4 extends Menu {
+      constructor() {
+        super();
+        this.JOURNAL = JOURNAL;
+        this.EVENTS = EVENTS;
+      }
+      correlation(evt) {
+        return phi(window.tableFor(evt))
+      }
+      analyze(val) {
+        return window.analyze(val)
+      }
+      tableFor(evt) {
+        return window.tableFor(evt)
+      }
     }
+
+    var a, b, c, d, s;  //global variables
+    function init() {
+      let len = 123, name = "Circle", pi = Math.PI
+      a = [0, 11, "22", "abc"]
+      c = { len, name, pi }
+      d = new Date()
+      s = "Small is beautiful"
+      MENU = { a, c, d, s, window } //global
+      //make MENU a Menu instance
+      Object.setPrototypeOf(MENU, Menu.prototype)
+      display(MENU);
+      display(new Chap4());
+      display(new Chap6());
+      display(new Quiz());
+      display(new Async());
+      display(MENU);
+    }
+    docName.innerText = "Inspector " + VERSION;
+    try {
+      inspect(sss, init); //makes the table
+      inp.value = "new Date()";
+    } catch (e) {
+      reportError(e);
+
+
+    }
+
+    function firstQuestion() {
+      for (let x of JOURNAL) {
+        for (let y of x.events) {
+          if (y.includes("work") || y.includes("weekend")) {
+            document.getElementById('data').value += x.events + '\n';
+          }
+        }
+      }
+
+    
+  
+
+
+    }
+
+ function function1(value){
+let m=new Map();
+let a=0;
+for (let x of JOURNAL) {
+  for (let y of x.events) {
+    if(y==value){
+
+      m.set(x.events,a);
+      a++;
+      break;
+    }
+
+
+  }
+  
 }
-</script>
+return m;
+ }
+
+function function2(value){
+let w=function1("weekend");
+let a=0;
+w.forEach((values,keys) => {
+
+  for (let x of keys) {
+    if(x== value){
+      a++;
+    }
+
+  }
+  
+});
+
+tArea.innerText=a;
+console.log(a);
+
+}
 
 
-</body></html>
+    
+
+  </script>
+
+
+</body>
+
+</html>
