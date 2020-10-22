@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" sizes="192x192" href="/JS/images/JS.png">
+
+
+    <style>
+        .bigbox {
+
+            background: lights;
+            border: 3px solid lightseagreen;
+            border-radius: 5px;
+
+        }
+
+        .box {
+
+            height: auto;
+            width: auto;
+            background: lightseagreen;
+            border: 3px solid lightblue;
+            border-radius: 5px;
+
+
+
+        }
+
+        .box:hover {
+
+            background: white;
+
+            border: border: 3px solid white;
+        }
+
+        .box h1 {
+            color: white;
+            text-align: center;
+
+        }
+
+        .box h1:hover {
+            color: lightseagreen;
+
+        }
+
+        body {
+            max-width: 440px;
+        }
+
+        #sample {
+            overflow-x: auto;
+        }
+
+        table {
+
+            border-collapse: collapse;
+
+            align-self: center;
+        }
+
+        th {
+
+            background: lightseagreen;
+            color: lightgreen;
+            padding: 5px 5px;
+        }
+
+        td {
+            border: 3px solid lightseagreen;
+            padding: 5px 5px;
+            text-align: center;
+            position: relative;
+            opacity: 0.7;
+
+        }
+
+        td:hover {
+            visibility: visible;
+            background: lightseagreen;
+            color: white;
+        }
+
+        td .tip {
+            visibility: hidden;
+            font-size: small;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 5px 5px;
+            position: absolute;
+            left: 5px;
+            top: 20px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="bigbox">
+        <div class="box">
+            <h1>Poisson Table</h1>
+
+        </div>
+        <center>
+            <h2 id=title></h2>
+
+            <table id="tablo"></table>
+
+            <p id=out style="font-size:small"></p>
+
+        </center>
+
+
+    </div>
+    <hr />
+    <b>Sample code</b>
+    <pre id=sample></pre>
+    <hr />
+<img src="tablopic.PNG" alt="">
+    <script>
+        "use strict";
+
+        function makeRows() {
+            const L = [0.5, 1, 1.5, 2, 2.5, 3];
+            const p = [];
+
+            let row = "<th></th>";
+            for (let j = 0; j < L.length; j += 1) {
+                row += "<th>" + "λ=" + ((j / 2) + 0.5) + "</th>";
+                p[j] = (Math.exp(-1 * (L[j]))).toFixed(4);
+            }
+
+            let text = "<tr>" + row + "</tr>";
+
+            for (let i = 0; i <= 8; i++) {
+                row = "<th>" + "x=" + (i) + "</th>";
+
+                for (let k = 1; k <= p.length; k++) {
+                    row += "<td>" + p[k - 1] + "</td>";
+                    let f = p[i]
+                    p[k - 1] = ((L[k - 1] * p[k - 1]) / (i + 1)).toFixed(4);
+
+                }
+                text += "<tr>" + row + "</tr>";
+            }
+
+
+            tablo.innerHTML = text;
+        }
+
+        title.innerText = document.title;
+        sample.innerText = makeRows.toString();
+        makeRows();
+    </script>
+
+</body>
+
+</html>
