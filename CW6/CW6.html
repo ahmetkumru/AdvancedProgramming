@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+    <title style="">Asenkron Programlama </title>
+
+  <style> /* CSS comment */
+
+  .box{
+border: 4px solid lightseagreen;
+border-radius: 5px;
+padding: 20px;
+background: lightgreen;
+  }
+  .box p{
+    border: 2px solid lightseagreen;
+    border-radius: 5px;
+  }
+    body { max-width: 440px; }
+    #url { width: 190px; }
+    span, #url { color: blue; }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+ <div class="box"><h2 id=title title="Modify xxx"></h2>
+    <p  title="navigator.platform">
+      Platform: <span id=plat>??</span>
+    </p>
+    <p title="Battery level">
+      Battery level: <span id=level>??</span>
+    </p>
+    <p title="Latitude/Longitude">
+      Location: <span id=loc>??</span>
+    </p>
+    <p title="URL exists?">
+      URL <input type=url id=url value="https://ahmetkumru.github.io/AdvancedProgramming/"
+          onChange="check()"> <span id=resp>??</span>
+    </p>
+</div>   
+
+<hr />
+<b>Sample code</b>
+<pre id=sample>This text is not shown. Why?</pre>
+
+<hr />
+
+<script>
+"use strict";
+// JavaScript comment
+function check() {
+    fetch(url.value).then(response => resp.innerText = response.ok).catch(x => resp.innerText = x)
+}
+function init() {
+   
+    plat.innerText = navigator.geolocation.getCurrentPosition
+    (position => loc.innerText = position.coords.latitude.toFixed(4)
+     + "," + position.coords.longitude.toFixed(4))
+    navigator.getBattery().then(battery => level.innerText = (battery.level*100).toFixed(0) + "%")
+    plat.innerText = navigator.platform
+    check()
+}
+    title.innerText = document.title;
+    sample.innerText = init+'\n'+check;
+    init();
+</script>
+
+</body>
+</html>
