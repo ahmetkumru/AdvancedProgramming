@@ -51,14 +51,16 @@ background: lightgreen;
 
 <script>
 "use strict";
-// JavaScript comment
-function check() {
+
+function check() 
+{
  fetch(url.value).then(response =>{
    if(response.ok){
     resp.innerText = "ok";}
    else{
     resp.innerText = "no";}
  });}
+
 function init() {
    
     plat.innerText = navigator.geolocation.getCurrentPosition
