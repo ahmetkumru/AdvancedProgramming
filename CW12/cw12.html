@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="../images/icon192.png">
+  <title>GitHub Users</title>
+  <style>
+    body {
+        max-width: 440px;
+    }
+    img {
+        padding-right: 12px; 
+        width: 440px;
+        
+    }
+    .box{
+        padding-left: 10px;
+        margin-top:5px ;
+        border: 2px solid gray;
+        border-radius: 5px;
+        background: lightblue;
+    }
+    p{
+        border: 2px solid gray;
+        border-radius: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    div{
+        color: blue;
+    }
+  </style>
+</head>
+
+<body>
+
+
+<input type=text id=usr value=blm-fsmvu onChange="readUser()">
+<div class="box">
+     <br>
+    <br>
+    <img id=photo style="width: 410px;height: 410px;"></img>
+    
+    <h2 id=nameInfo></h2>
+    <h3 id=userNameInfo></h3>
+    <div>Company</div>
+    <p id="companyInfo">
+        
+    </p>
+    <div>Location : </div>
+    <p id="locationInfo"></p>
+   <div>Mail</div>
+    <p id="mailInfo"></p>
+    <div>Github</div>
+    <p id="githubInfo"></p></div>
+
+<p id=out></p>
+<hr />
+<b>Sample code</b>
+<pre id=sample></pre>
+<hr />
+<p>Ref: <a href="https://developer.github.com/v3/#rate-limiting" 
+   target=NewTab>GitHub Developer</a>
+</p>
+
+<script>
+"use strict";
+function error(t) {
+    out.style.color = 'red'
+    out.innerText = t; throw t
+}
+async function toJSON(url) {
+    let r = await fetch(url)
+    if (!r.ok) error(r.statusText)
+    return r.json()
+}
+async function readUser() {
+    console.log("-")
+    const BR = "<BR>", 
+      URL = "https://api.github.com/users/"
+    let u = await toJSON(URL+usr.value)
+    console.log("---")
+    if (!u || !u.login) 
+      error(usr.value+' not found')
+    photo.src = u.avatar_url = u.avatar_url;
+    nameInfo.innerText = u.name;
+    userNameInfo.innerText = u.login;
+    companyInfo.innerText = u.company;
+    locationInfo.innerText = u.location;
+    mailInfo.innerText = u.email;
+    githubInfo.innerText = u.blog;
+
+
+}
+readUser()
+</script>
+
+</body>
+</html>
