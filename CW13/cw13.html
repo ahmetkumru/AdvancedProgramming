@@ -97,7 +97,7 @@ async function toJSON(url) {
 }
 // Location
 var lat, lon;  //global values
-async function askLocation() {
+/*async function askLocation() {
     let name = 'geolocation'
     let result = await navigator.permissions.query({name})
     if (result.state == 'denied') {
@@ -119,6 +119,7 @@ function getLocation1(p) { //Accurate
     lat = p.coords.latitude; lon = p.coords.longitude;
     askWeather()
 }
+*/
 // Weather
 var accessKey;
 async function askWeather() {
@@ -189,7 +190,8 @@ function getAPIkey() {
     }
 }
     err.style.display = "none"
-    getAPIkey(); askLocation()
+    getAPIkey(); askWeather();
+    
 </script>
 
 </body>
