@@ -1,0 +1,134 @@
+body {
+  font-family: url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap");
+  background: #b6eb7a;
+}
+
+.bigBox {
+  background: #81b214;
+  display: flex;
+  height: 100%;
+  width: 95%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 2%;
+  padding-right: 2%;
+  border: 2px solid green;
+  border-radius: 5px;
+}
+
+.box {
+  background: #f1f1e8;
+  display: inline-block;
+
+  border: 2px solid green;
+  align-items: center;
+  height: 100%;
+  border-radius: 5px;
+  width: 48.5%;
+  margin-right: 1.5%;
+}
+
+.btn {
+  margin-top: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 15px;
+  width: 60%;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #81b214;
+
+  font-family: "Montserrat", sans-serif;
+  font-style: oblique;
+  font-size: 1.25rem;
+  color: #81b214;
+}
+
+.btn:hover {
+  border: 2px solid white;
+  color: white;
+  background: #81b214;
+}
+
+.inBox {
+  width: 96%;
+
+  display: flex;
+  margin-left: 2%;
+  margin-right: 2%;
+  height: 100%;
+}
+.foods {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  margin-right: 5px;
+  height: 80%;
+}
+
+.miktar {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 5px;
+  height: 80%;
+}
+.secondBox {
+  background: #f1f1e8;
+  width: 48.5%;
+  margin-left: 1.5%;
+  border: 2px solid green;
+  border-radius: 5px;
+}
+
+table {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  width: 95%;
+  font-family: "Montserrat", sans-serif;
+  border-collapse: collapse;
+  height: 90%;
+  margin-top: 2.5%;
+  border: 2px solid #81b214;
+}
+
+td,
+th {
+  border: 1px solid #bfdcae;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #81b214;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-style: italic;
+  color: #456268;
+  text-align: center;
+}
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-style: italic;
+  color: #456268;
+
+  text-align: center;
+}
+
+.combobox {
+  margin-bottom: 10px;
+  height: 22px;
+  border: 2px solid #81b214;
+  border-radius: 10px;
+}
+
+.miktarClass {
+  margin-bottom: 10px;
+  margin-right: 1px;
+  border: 2px solid #81b214;
+  border-radius: 10px;
+}
