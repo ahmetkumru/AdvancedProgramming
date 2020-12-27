@@ -1,9 +1,10 @@
 body {
-  font-family: url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap");
+  font-family: "Langar", cursive;
   background: #b6eb7a;
 }
 
 .bigBox {
+  visibility: hidden;
   background: #81b214;
   display: flex;
   height: 100%;
@@ -38,8 +39,6 @@ body {
   border-radius: 5px;
   border: 2px solid #81b214;
 
-  font-family: "Montserrat", sans-serif;
-  font-style: oblique;
   font-size: 1.25rem;
   color: #81b214;
 }
@@ -87,36 +86,49 @@ table {
   margin-left: 2.5%;
   margin-right: 2.5%;
   width: 95%;
-  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+
   border-collapse: collapse;
   height: 90%;
   margin-top: 2.5%;
   border: 2px solid #81b214;
 }
 
-td,
+td {
+  border: 1px solid #bfdcae;
+  color: black;
+  font-size: 14px;
+  text-align: left;
+  padding: 8px;
+}
 th {
   border: 1px solid #bfdcae;
+
+  color: #81b214;
+  font-size: 14px;
   text-align: left;
   padding: 8px;
 }
 
 tr:nth-child(even) {
   background-color: #81b214;
+  color: green;
 }
 
 h1 {
-  font-family: "Montserrat", sans-serif;
   font-style: italic;
   color: #456268;
   text-align: center;
 }
 h2 {
-  font-family: "Montserrat", sans-serif;
   font-style: italic;
   color: #456268;
 
   text-align: center;
+}
+
+h3 {
+  color: #81b214;
 }
 
 .combobox {
@@ -125,10 +137,46 @@ h2 {
   border: 2px solid #81b214;
   border-radius: 10px;
 }
+.iconClass {
+  width: 40%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 30%;
+  margin-right: 30%;
+  justify-content: center;
+
+  font-style: italic;
+  text-align: center;
+  border: 2px solid green;
+  border-radius: 10px;
+  margin-top: 1.5%;
+}
 
 .miktarClass {
   margin-bottom: 10px;
   margin-right: 1px;
   border: 2px solid #81b214;
   border-radius: 10px;
+}
+
+.start {
+  width: 100%;
+}
+
+#btn2 {
+  width: 100%;
+  height: 30px;
+  border: 2px solid #81b214;
+  background: white;
+  font-size: 1rem;
+  color: #81b214;
+  border-radius: 10px;
+  margin-bottom: 2.5%;
+  font-weight: 600;
+}
+
+#btn2:hover {
+  border: 2px solid white;
+  color: white;
+  background: #81b214;
 }

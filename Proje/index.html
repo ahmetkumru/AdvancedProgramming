@@ -3,58 +3,59 @@
 
 <head>
     <meta charset="UTF-8">
-      <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
     <title>Document</title>
 
 
 
 </head>
 
+
 <body>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" media="(max-width:945px" ) href="mobile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
 
     <h1> MAKRO HESAPLAYICI </h1>
 
     <h2>Tükettiğiniz Besinler</h2>
-    <div class="bigBox">
+
+    <div class="start"><button style="font-family: 'Langar', cursive;" onclick="init()" id="btn2">Başlamak İçin
+            Tıklayınız</button></div>
+    <div id="bigScreen" class="bigBox">
         <div class="box">
 
 
             <div class="inBox">
                 <div class="foods">
 
-
-
                     <h3 style="text-align: center;">BESİNLER</h3>
 
-
-
-                    <select class="combobox" id="combobox1" name="öğünler"></select>
+                    <select class="combobox" id="combobox1" name="öğünler"> </select>
                     <select class="combobox" id="combobox2" name="öğünler"></select>
                     <select class="combobox" id="combobox3" name="öğünler"></select>
                     <select class="combobox" id="combobox4" name="öğünler"></select>
-                    <select class="combobox" id="combobox4" name="öğünler"></select>
+                    <select class="combobox" id="combobox5" name="öğünler"></select>
 
                 </div>
 
                 <div class="miktar">
                     <h3 style="text-align: center;">MİKTAR (g)</h3>
 
-                    <input class="miktarClass" type="text">
-                    <input class="miktarClass" type="text">
-                    <input class="miktarClass" type="text">
-                    <input class="miktarClass" type="text">
-                    <input class="miktarClass" type="text">
+                    <input class="miktarClass" id="miktar1" value="1" type="number">
+                    <input class="miktarClass" id="miktar2" value="1" type="number">
+                    <input class="miktarClass" id="miktar3" value="1" type="number">
+                    <input class="miktarClass" id="miktar4" value="1" type="number">
+                    <input class="miktarClass" id="miktar5" value="1" type="number">
                 </div>
 
 
 
             </div>
-            <button class="btn">Hesapla</button>
+            <button style="font-family: 'Langar', cursive;" class="btn" id="btn1" onclick="calculate()">Hesapla</button>
 
 
 
@@ -72,7 +73,7 @@
                     <th>FAT</th>
                     <th>PROTEIN</th>
                 </tr>
-                <tr>
+                <tr id="tr1">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -80,7 +81,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
+                <tr id="tr2">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -88,7 +89,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
+                <tr id="tr3">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -96,7 +97,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
+                <tr id="tr4">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -104,7 +105,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
+                <tr id="tr5">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -112,7 +113,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
+                <tr id="tr6">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -126,25 +127,272 @@
 
     </div>
 
-    <div id="sea" style=" margin-top:20px; 
+    <div id="percent1" style=" display: flex ; padding: 5px 0;   visibility: hidden; background: #f3eac2;"
+        class="iconClass"><i class=" fas fa-bread-slice"></i>
+        <p style="margin:0 0 0 3px ;" id="percent1Text">KARBONHİDRAT </p>
+    </div>
+    <div id="percent2" style=" display: flex ; padding: 5px 0; visibility: hidden;background: #f5b461;"
+        class="iconClass"><i class=" fas fa-oil-can"></i>
+        <p style="margin:0 0 0 3px ;" id="percent2Text">YAĞ </p>
+    </div>
+    <div id="percent3" style=" display: flex ; padding: 5px 0; visibility: hidden;background: #ec524b;"
+        class="iconClass"><i class="  fas fa-drumstick-bite"> </i>
+        <p style="margin:0 0 0 3px ;" id="percent3Text">PROTEİN </p>
+    </div>
+
+    <div id="pieChart" style=" visibility: hidden; margin-top:20px; 
     margin-left: 30%;
-    margin-left:30%;
+    margin-right:30%;
     padding-bottom: 30%;
     width: 40%;
     display: block; 
 
     height: 60%; 
     border-radius: 50%;
-    border: 4px solid #81b214; 
+    border: 2px solid green; 
     background-image: conic-gradient( 
-       #f3eac2 108deg,  
-       #f5b461 0 180deg,  
+       #f3eac2 120deg,  
+       #f5b461 0 24 0deg,  
         #ec524b 0); " class="piechart"></div>
 
 
 
 
 </body>
+<script>
+    "use strict";
+    let foodArray = [];
+    class Food {
+        constructor(name, cal, carb, fat, protein) {
+
+            this.name = name;
+            this.cal = cal;
+            this.carb = carb;
+            this.fat = fat;
+            this.protein = protein;
+
+        }
+        toString() {
+            return this.name + " " + this.cal + " " + this.carb + " " + this.fat + " " + this.protein;
+        }
+        static fromString(s) {
+            return new Food(...s.split('\t'))
+        }
+    }
+    let foodMap = new Map(); //global
+    function makeData(txt, Maker, map) {
+        map.clear()
+        for (let line of txt.split('\n')) {
+            if (!line) continue
+            let p = Maker.fromString(line)
+            map.set(p.name, p)
+        }
+
+        return map;
+    }
+
+
+    function getFood() {
+        fetch("food.txt").then(r => r.text())
+            .then(x => makeData(x, Food, foodMap))
+    }
+    function getFoodList() {
+        foodArray = [];
+        foodMap.forEach(p => {
+            foodArray.push(p);
+
+        });
+
+
+    }
+
+    function init() {
+        document.getElementById("bigScreen").style.visibility = "visible";
+        document.getElementById("pieChart").style.visibility = "visible";
+
+        for (let i = 1; i < 4; i++) {
+            let temp = i;
+            document.getElementById("percent" + temp.toString()).style.visibility = "visible";
+
+
+        }
+
+        document.getElementById("btn2").innerText = "RESET"
+
+        for (let i = 1; i < 6; i++) {
+            let temp = i;
+            clearCombobox("combobox" + temp.toString());
+            clearMiktar("miktar" + temp.toString());
+        }
+        for (let i = 1; i < 6; i++) {
+            let temp = i;
+            makeCombobox("combobox" + temp.toString());
+        }
+
+        calculate();
+
+
+
+
+    }
+
+
+
+    function makeCombobox(id) {
+
+        foodMap.forEach(f => {
+            document.getElementById(id).innerHTML += "<option >" + f.name + "</option>"
+        });
+
+    }
+
+    function clearCombobox(id) {
+        document.getElementById(id).innerHTML = "";
+    }
+
+    function clearMiktar(id) {
+        let temp = 0;
+        document.getElementById(id).value = Number(temp);
+    }
+
+
+
+    function calculate() {
+
+        if (miktarControl() == false) {
+
+            let totalMiktar = 0;
+            let totalCal = 0;
+            let totalCarb = 0;
+            let totalFat = 0;
+            let totalProtein = 0;
+
+
+
+            for (let i = 1; i < 6; i++) {
+                let temp = i;
+                let food = document.getElementById("combobox" + temp.toString()).value
+                let miktar = document.getElementById("miktar" + temp.toString()).value
+                totalMiktar += Number(miktar)
+                let name = (foodMap.get(food).name)
+                let kalori = (Number(foodMap.get(food).cal) * (miktar / 100)).toFixed(1)
+                totalCal += Number(kalori)
+                let karbonhidrat = (Number(foodMap.get(food).carb) * (miktar / 100)).toFixed(1)
+                totalCarb += Number(karbonhidrat)
+                let yag = (Number(foodMap.get(food).fat) * (miktar / 100)).toFixed(1)
+                totalFat += Number(yag);
+                let protein = (Number(foodMap.get(food).protein) * (miktar / 100)).toFixed(1)
+                totalProtein += Number(protein);
+
+
+
+
+                document.getElementById("tr" + temp.toString()).innerHTML = "<td>" + name + "</td>" + "<td>" + miktar + "</td>" + "<td>" + kalori + "</td>" + "<td>" + karbonhidrat + "</td>" + "<td>" + yag + "</td>" + "<td>" + protein + "</td>"
+
+
+
+
+            }
+
+
+            document.getElementById("tr6").innerHTML = "<td>" + "TOTAL" + "</td>" + "<td>" + totalMiktar.toFixed(1) + "</td>" + "<td>" + totalCal.toFixed(1) + "</td>" + "<td>" + totalCarb.toFixed(1) + "</td>" + "<td>" + totalFat.toFixed(1) + "</td>" + "<td>" + totalProtein.toFixed(1) + "</td>"
+            makePieChart(totalCarb, totalFat, totalProtein);
+
+        }
+
+        else {
+            alert("Miktar değelerini kontrol ediniz...");
+        }
+
+
+
+
+    }
+
+    function makePieChart(totalCarb, totalFat, totalProtein) {
+
+        let carbs = Number(totalCarb) * 4;
+        let fats = Number(totalFat) * 9;
+        let proteins = Number(totalProtein) * 4
+
+        let total = Number(carbs) + Number(fats) + Number(proteins);
+
+
+        let carbsPercent = ((Number(carbs) / Number(total)).toFixed(3)) * 100;
+        let fatsPercent = ((Number(fats) / Number(total)).toFixed(3)) * 100;
+        let proteinPercent = ((Number(proteins) / Number(total)).toFixed(3)) * 100;
+
+
+
+        let firstSlice = Number(carbsPercent) * (3.6)
+
+        let secondSlice = Number(firstSlice) + Number(fatsPercent) * (3.6)
+
+        document.getElementById("pieChart").style.backgroundImage = "conic-gradient(rgb(243, 234, 194)" + firstSlice.toString() + "deg, rgb(245, 180, 97) 0deg, rgb(245, 180, 97) " + secondSlice.toString() + "deg,rgb(236, 82, 75) 0deg)";
+
+        if (total == "0.0") {
+            percentControl();
+        }
+        else {
+            makePercent(carbsPercent, fatsPercent, proteinPercent);
+        }
+
+
+    }
+
+    function makePercent(carbsPercent, fatsPercent, proteinPercent) {
+        document.getElementById("percent1Text").innerHTML = "KARBONHİDRAT";
+        document.getElementById("percent2Text").innerHTML = "YAĞ";
+        document.getElementById("percent3Text").innerHTML = "PROTEİN";
+
+
+        document.getElementById("percent1Text").innerHTML += "%" + carbsPercent.toFixed(2);
+        document.getElementById("percent2Text").innerHTML += "%" + fatsPercent.toFixed(2);
+        document.getElementById("percent3Text").innerHTML += "%" + proteinPercent.toFixed(2);
+
+
+
+    }
+
+    function percentControl() {
+        document.getElementById("percent1Text").innerHTML = "KARBONHİDRAT";
+        document.getElementById("percent2Text").innerHTML = "YAĞ";
+        document.getElementById("percent3Text").innerHTML = "PROTEİN";
+
+        document.getElementById("percent1Text").innerHTML += "%0"
+        document.getElementById("percent2Text").innerHTML += "%0"
+        document.getElementById("percent3Text").innerHTML += "%0"
+
+
+
+
+    }
+
+    function miktarControl() {
+        let isNegative = false
+        for (let i = 1; i < 6; i++) {
+            let temp = i;
+            let miktar = document.getElementById("miktar" + temp.toString()).value;
+            if (Number(miktar < 0)) {
+                isNegative = true;
+            }
+
+
+
+        }
+
+        return isNegative;
+    }
+
+
+
+
+
+
+
+    getFood();
+</script>
+
 
 
 
